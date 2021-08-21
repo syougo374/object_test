@@ -1,12 +1,12 @@
 class Money
-  attr_reader :total_amount, :slot_money
+  # attr_reader :total_amount, :slot_money
   def initialize
-    @total_amount = 0
-    @slot_money = 0
+    # @total_amount = 0
+    # @slot_money = 0
   end
 
   def current_slot_money
-    puts "投入金額は#{@slot_money}円だよ"
+    puts "現在の投入金額は#{@slot_money}円だよ"
   end
 
   def total_amount

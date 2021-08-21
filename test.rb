@@ -1,3 +1,5 @@
+#生のRubyだけで
+
 # MONEY1 = [10, 50, 100, 500, 1000].freeze
 # @total_amount = 0
 # @cora = {name: 'コーラ', price: 120, count: 5}
@@ -60,6 +62,7 @@ class VendingMachine < Drink
     @slot_money = 0
     @total_amount = 0
     @cora = { drink: Drink.cora.drink ,price: Drink.cora.price, count: Drink.cora.count }
+    selected_number
   end
 
   def add_drink(drink)
@@ -73,38 +76,48 @@ class VendingMachine < Drink
     end
   end
 
-  while true
-    menus = %i{1:お金を入れる 2:商品を選択する 3:お釣りを出す 4:逃げる}
-    puts "番号を入力して下さい"
-    menus.each do |menu|
-      puts "#{menu}"
-    end
-    num = gets.to_i
-    numbers = (1..menus.length)
-    if numbers.include?(num)
-      case num
-        when 1 then
-          money = gets.to_i
-          # binding.irb
-          slot_money(money)
-        when 2 then
-          # vm = VendingMachine.new
-          drink = gets.to_s
-          juice_buy(drink)
-        when 3 then
-          return_money
-        when 4 then
-          break
+  def selected_number
+
+    while true
+      current_slot_money
+      menus = %W(1:お金を入れる
+                 2:商品を選択する
+                 3:お釣りを出す
+                 4:逃げる )
+
+      puts "番号を入力して下さい"
+      menus.each do |menu|
+        puts "#{menu}"
       end
-    else
-      puts "指定の数値を入力して下さい"
+      num = gets.to_i
+      numbers = (1..menus.length)
+      if numbers.include?(num)
+        case num
+          when 1 then
+            puts "あなた：お金を入れるを選択しました💫\n投入金額を入力して下さい🥇🥈🥉"
+            money = gets.to_i
+            slot_money(money)
+          when 2 then
+            puts "あなた：商品を選択しました👆🏻"
+            drink = gets.to_s
+            juice_buy(drink)
+          when 3 then
+            puts "あなた：お釣りを出しました💰"
+            return_money
+          when 4 then
+           puts "あなた：逃げました🏃"
+            return
+        end
+      else
+        puts "指定の数値を入力して下さい"
+      end
     end
   end
 
   private
 
   def selected_drink(drink)
-    if drink == "コーラ"
+    if drink == "コーラ\n"
       @cora
     else
       puts "そんなものはない"
@@ -122,4 +135,4 @@ class VendingMachine < Drink
     end
   end
 end
-vm = VendingMachine.new
+VendingMachine.new
