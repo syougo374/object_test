@@ -99,7 +99,7 @@ class VendingMachine < Drink
             slot_money(money)
           when 2 then
             puts "あなた：商品を選択しました👆🏻"
-            drink = gets.to_s
+            drink = gets.chomp
             juice_buy(drink)
           when 3 then
             puts "あなた：お釣りを出しました💰"
@@ -117,7 +117,7 @@ class VendingMachine < Drink
   private
 
   def selected_drink(drink)
-    if drink == "コーラ\n"
+    if drink == "コーラ"
       @cora
     else
       puts "そんなものはない"
