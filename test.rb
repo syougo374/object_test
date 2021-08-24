@@ -55,13 +55,17 @@
 # end
 
 # require './test.rb'
-# require './humen.rb'
-require './drink.rb'
-class VendingMachine < Drink
+require_relative 'humen'
+require_relative 'drink'
+require_relative 'money'
+class VendingMachine# < Drink
+include Money
+include Humen
   def initialize
+    # Money.new
     @slot_money = 0
     @total_amount = 0
-    @cora = { drink: Drink.cora.drink ,price: Drink.cora.price, count: Drink.cora.count }
+    # @cora = { drink: Drink.cora.drink ,price: Drink.cora.price, count: Drink.cora.count }
     selected_number
   end
 
@@ -80,7 +84,7 @@ class VendingMachine < Drink
 
     while true
       current_slot_money
-      menus = %W(1:お金を入れる
+      menus = %w(1:お金を入れる
                  2:商品を選択する
                  3:お釣りを出す
                  4:逃げる )
@@ -99,7 +103,10 @@ class VendingMachine < Drink
             slot_money(money)
           when 2 then
             puts "あなた：商品を選択しました👆🏻"
-            drink = gets.to_s
+            # Drink.all
+            drink = gets.chomp
+            binding.irb
+
             juice_buy(drink)
           when 3 then
             puts "あなた：お釣りを出しました💰"
@@ -117,8 +124,8 @@ class VendingMachine < Drink
   private
 
   def selected_drink(drink)
-    if drink == "コーラ\n"
-      @cora
+    if drink == "コーラ"
+      # @cora
     else
       puts "そんなものはない"
     end
@@ -135,4 +142,4 @@ class VendingMachine < Drink
     end
   end
 end
-VendingMachine.new
+# VendingMachine.new

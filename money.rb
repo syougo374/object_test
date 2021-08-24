@@ -1,4 +1,4 @@
-class Money
+module Money
   # attr_reader :total_amount, :slot_money
   def initialize
     # @total_amount = 0

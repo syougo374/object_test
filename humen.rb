@@ -1,6 +1,15 @@
 require './money.rb'
-class Humen < Money
+require_relative 'test'
+require_relative "test"
+module Humen #< Money
+
   MONEY = [10, 100, 500, 1000].freeze
+
+  # def initialize(money)
+  #   @slot_money = 0
+  #   slot_money(money)
+  # end
+
   def juice_buy(drink)
     @selected_drink = selected_drink(drink)
     if abailable(drink) == "購入可能"
@@ -12,10 +21,15 @@ class Humen < Money
   end
 
   def slot_money(money)
-    return false unless MONEY.include?(money)
-    @slot_money += money
-    puts "#{@slot_money}円投入しました"
-    juice_manage
+    # binding.irb
+    if MONEY.include?(money)
+      @slot_money += money
+      puts "#{@slot_money}円投入しました"
+    else
+      puts "指定のお金を入れて下さい"
+    end
+    # return false unless MONEY.include?(money)
+    # juice_manage
   end
 
   private

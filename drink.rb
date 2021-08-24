@@ -1,13 +1,18 @@
-require './humen.rb'
-class Drink < Humen
-  attr_reader :drink, :price, :count
-  def initialize(drink, price, count)
+# require './humen.rb'
+require 'kosi'
+class Drink
+  attr_reader :drink, :price
+  def initialize(drink, price)
     @drink = drink
     @price = price
-    @count = count
+    @@instances = []
   end
 
-  def self.cora
-    Drink.new('コーラ',120,5)
+  # def self.cora
+  #   Drink.new('コーラ',120,5)
+  # end
+
+  def self.all
+    @@instances
   end
 end
